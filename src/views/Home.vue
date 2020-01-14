@@ -45,11 +45,10 @@ export default {
     delete axios.defaults.headers.common["Authorization"];
     axios
       .get(
-        "http://api.apixu.com/v1/current.json?key=126675bcb0c04e2baf1191556191802&q=Belgrade"
-      )
+        "http://api.weatherstack.com/current?access_key=cdeb8a40d1c3e91756163e7f7c09048d&query=Belgrade" )
       .then(({ data }) => {
         this.temperature =
-          data.location.name + " temperatura: " + data.current.temp_c + "°C";
+          data.location.name + " temperature: " + data.current.temperature + "°C";
       });
     axios.defaults.headers.common["Authorization"] = auth;
   },
@@ -100,7 +99,6 @@ export default {
   background-color: rgba(151, 177, 219, 0.2);
   display: block;
   height: 50px;
-  vertical-align: middle;
   #right-header-area {
     display: inline-flex;
     float: right;
