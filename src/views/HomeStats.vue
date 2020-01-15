@@ -108,3 +108,29 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.stats {
+  .table--mod {
+    position: relative;
+  }
+  .btn--mod {
+    margin: 5px;
+  }
+  .buttons {
+    position: absolute;
+    left: 0;
+    z-index: 999;
+    margin-left: 1%;
+    margin-top: -3px;
+    font-size: 19px;
+    display: inline-flex;
+  }
+  .table-wrapper {
+    margin: 0 1%;
+  }
+  .form-group {
+    float: right;
+  }
+}
+</style>
