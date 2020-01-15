@@ -79,3 +79,63 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.btn--mod {
+  margin: 5px;
+  margin-left: 1%;
+  i {
+    margin-left: 2px;
+  }
+}
+
+#logout:hover {
+  cursor: pointer;
+  color: grey !important;
+}
+
+.header {
+  text-align: left;
+  background-color: rgba(151, 177, 219, 0.2);
+  display: block;
+  height: 50px;
+  #right-header-area {
+    display: inline-flex;
+    float: right;
+    vertical-align: middle;
+    margin-right: 2%;
+    margin-top: 10px;
+    border-radius: 5%;
+    i {
+      color: white;
+      font-size: 25px;
+      margin-left: 30px;
+    }
+  }
+}
+
+.router-body {
+  width: 100%;
+  height: 100%;
+  //   display: flex;
+  //   justify-content: center;
+  margin-top: 2%;
+}
+.alert--mod {
+  margin-right: 40px;
+  width: 300px;
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+</style>
