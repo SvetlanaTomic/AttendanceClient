@@ -13,9 +13,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-#login-panel {
-  margin-top: 10%;
-}
-</style>

@@ -86,8 +86,8 @@ export default {
         texts: {
           count: "",
           filter: "",
-          noResults: "Nema rezultata",
-          filterPlaceholder: "Pretraga.."
+          noResults: "Nothing found",
+          filterPlaceholder: "Searching.."
         }
       }
     };
@@ -137,38 +137,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.users {
-  position: relative;
-}
-
-.btn--mod {
-  margin-right: 5px;
-}
-
-#btn--add {
-  position: absolute;
-  top: 3.5em;
-  right: 0;
-  z-index: 999;
-}
-
-.table--mod {
-  z-index: 1;
-}
-
-.admin-view {
-  margin: 0 1%;
-}
-
-.users {
-  margin-top: 25px;
-}
-.navigation {
-  display: inline-flex;
-}
-
-.VueTables__limit-field {
-  display: none;
-}
-</style>
