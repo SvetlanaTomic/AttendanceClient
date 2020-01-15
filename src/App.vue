@@ -22,21 +22,16 @@
   height: 100%;
   width: 100%;
 }
-// #nav {
-//   padding: 30px;
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 
 body {
   background-image: url(./assets/background.jpg);
+
 }
 
+
+.body.background-image{
+  opacity: 0.5;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;

@@ -114,9 +114,25 @@ export default {
   .table--mod {
     position: relative;
   }
+  .table{
+    color:#2c3e50;
+    
+  }
+   .btn-sucess{
+    background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  }
   .btn--mod {
     margin: 5px;
   }
+ 
   .buttons {
     position: absolute;
     left: 0;
@@ -125,6 +141,7 @@ export default {
     margin-top: -3px;
     font-size: 19px;
     display: inline-flex;
+    
   }
   .table-wrapper {
     margin: 0 1%;

@@ -110,15 +110,6 @@ export default {
   margin-bottom: 20px;
   font-size: 50px;
 }
-/* #login{
-     margin: 10% auto;
-     width:400px;
-     max-width: none !important;
-     height: 400px;
- }
- #login-form{
-     text-align: left;
- } */
 
 html {
   background-color: #56baed;
@@ -162,7 +153,6 @@ h2 {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   /*background: #fff;*/
-  /*background-image: url(./assets/background.jpg);*/
   padding: 30px;
   width: 90%;
   max-width: 450px;
