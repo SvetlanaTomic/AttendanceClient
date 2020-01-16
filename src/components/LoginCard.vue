@@ -8,33 +8,31 @@
       </div>
 
       <!-- Login Form -->
-     <!-- <form >@submit.prevent="login">-->
-        <input
-          @click="errorOccured = false"
-          type="text"
-          id="login"
-          class="form-control fadeIn second"
-          name="login"
-          placeholder="username"
-          v-model="username"
-        />
-        <input
-          @click="errorOccured = false"
-          type="password"
-          id="password"
-          class="form-control fadeIn third"
-          name="login"
-          placeholder="password"
-          v-model="password"
-        />
-        <input type="button" value="User"  @click.prevent="loginUser"/>
-            <input type="button" value="Admin"  @click.prevent="loginAdmin"/>
-        
+      <!-- <form >@submit.prevent="login">-->
+      <input
+        @click="errorOccured = false"
+        type="text"
+        id="login"
+        class="form-control fadeIn second"
+        name="login"
+        placeholder="username"
+        v-model="username"
+      />
+      <input
+        @click="errorOccured = false"
+        type="password"
+        id="password"
+        class="form-control fadeIn third"
+        name="login"
+        placeholder="password"
+        v-model="password"
+      />
+      <input type="button" value="User" @click.prevent="loginUser" />
+      <input type="button" value="Admin" @click.prevent="loginAdmin" />
+
       <transition enter-active-class="animated shake">
         <p id="error" v-if="errorOccured">Wrong username or password</p>
       </transition>
-
-    
     </div>
   </div>
 </template>
@@ -42,7 +40,7 @@
 <script>
 import axios from "axios";
 import jwt from "jsonwebtoken";
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -54,7 +52,7 @@ export default {
   },
   methods: {
     ...mapMutations(["setUser", "setAdminStatus"]),
-   
+    ...mapGetters(["getUser"]),
     loginAdmin() {
       let credentials = {
         username: this.username,
@@ -66,7 +64,6 @@ export default {
           let user = jwt.decode(res.data.token);
           this.setUser(user);
           this.setAdminStatus(true);
-
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.token;
           this.$router.push("/admin");
@@ -75,8 +72,8 @@ export default {
           this.errorOccured = !this.errorOccured;
         });
     },
-    
-     loginUser() {
+
+    loginUser() {
       let credentials = {
         username: this.username,
         password: this.password
@@ -84,11 +81,10 @@ export default {
       axios
         .post("users/login", credentials)
         .then(res => {
+          console.log(res);
           let nesto = res.data;
           this.setUser(nesto);
-          console.log(nesto);
           this.setAdminStatus(false);
-
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.token;
           this.$router.push("/home");
@@ -197,7 +193,7 @@ input[type="reset"] {
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  
+
   -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   -webkit-border-radius: 5px 5px 5px 5px;

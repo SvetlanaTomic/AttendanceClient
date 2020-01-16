@@ -10,59 +10,70 @@
           </div>
 
           <div class="modal-body">
-            <label>
-              <h3>username</h3>
-            </label>
-            <input class="form-control" placeholder="username" v-model="username" />
-            <br />
-            <label>
-              <h3>Password</h3>
-            </label>
-            <input
-              class="form-control"
-              placeholder="password"
-              v-model="password"
-            />
-            <br />
-            <label>
-              <h3>Grad</h3>
-            </label>
-            <select
-              class="custom-select"
-              id="inputGroupSelect01"
-              v-model="cityID"
-            >
-              <option v-for="c in cities" :key="c.cityId" :value="c.cityId">{{
-                c.name
-              }}</option>
-            </select>
-            <label>
+            <div class="container col-md-12">
+              <div class="row">
+                
+                <div class="col-md-6"> <label>
+                    <h3>Username</h3>
+                  </label>
+                  <input class="form-control" placeholder="username" v-model="username" />
+                </div>
+                <div class="col-md-6">
+                  <label>
+                    <h3>Password</h3>
+                  </label>
+                  <input class="form-control" placeholder="password" v-model="password" />
+                </div>
+              </div>
               <br />
-              <h3>Odeljenje</h3>
-            </label>
-            <select
-              class="custom-select"
-              id="inputGroupSelect01"
-              v-model="departmentID"
-            >
-              <option v-for="d in departments" :key="d.departmentId" :value="d.departmentId">{{
-                d.name
-              }}</option>
-            </select>
-            <br />
-            <br />
-            <input type="checkbox" v-model="adminStatus" />
-            <label class="ml-2" for="checkbox"><strong>Admin</strong></label>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>
+                    <h3>Name</h3>
+                  </label>
+                  <input class="form-control" placeholder="name" v-model="name" />
+                </div>
+                <div class="col-md-6">
+                  <label>
+                    <h3>Last name</h3>
+                  </label>
+                  <input class="form-control" placeholder="lastname" v-model="lastname" />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-md-6">
+                  <label>
+                    <h3>City</h3>
+                  </label>
+                  <select class="custom-select" id="inputGroupSelect01" v-model="cityID">
+                    <option v-for="c in cities" :key="c.cityId" :value="c.cityId">
+                      {{
+                      c.name
+                      }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label>
+                    <h3>Department</h3>
+                  </label>
+                  <select class="custom-select" id="inputGroupSelect01" v-model="departmentID">
+                    <option v-for="d in departments" :key="d.departmentId" :value="d.departmentId">
+                      {{
+                      d.name
+                      }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="btn btn-danger" @click.prevent="$emit('close')">
-                Quit
-              </button>
-              <button class="btn btn-success" @click.prevent="submit">
-                OK
-              </button>
+              <button class="btn btn-danger" @click.prevent="$emit('close')">Quit</button>
+              <button class="btn btn-success" @click.prevent="submit">Save</button>
             </slot>
           </div>
         </div>
@@ -70,7 +81,6 @@
     </div>
   </transition>
 </template>
-
 <script>
 import axios from "axios";
 
@@ -89,9 +99,10 @@ export default {
       let data = {
         username: this.username,
         password: this.password,
-        isAdmin: this.adminStatus,
-        department_id: this.departmentID,
-        city_id: this.cityID
+        name: this.name,
+        lastname: this.lastname,
+        departmentId: this.departmentID,
+        cityId: this.cityID
       };
 
       axios.post("/users", data).then(res => {
@@ -104,7 +115,8 @@ export default {
     return {
       username: "",
       password: "",
-      adminStatus: false,
+      name:"", 
+      lastname:"",
       cities: [],
       departments: [],
       cityID: -1,
@@ -157,14 +169,6 @@ export default {
   float: right;
 }
 
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
 .modal-enter {
   opacity: 0;

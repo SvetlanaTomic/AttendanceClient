@@ -5,7 +5,7 @@
         type="button"
         class="btn btn-primary btn--mod"
         @click="moveToStats"
-        v-if="isAdmin"
+        v-if="!isAdmin"
       >
         CheckIn
         <i class="fas fa-list" style="color:white"></i>
@@ -37,7 +37,7 @@
 
 <script>
 import axios from "axios";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
   created() {
@@ -53,7 +53,8 @@ export default {
     axios.defaults.headers.common["Authorization"] = auth;
   },
   computed: {
-    ...mapState(["errorOccured", "errorStatus", "isAdmin"])
+    ...mapState(["errorOccured", "errorStatus", "isAdmin"]),    
+    ...mapGetters(["getUser"])
   },
   data() {
     return {

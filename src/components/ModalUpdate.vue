@@ -46,7 +46,7 @@
                     <h3>City</h3>
                   </label>
                   <select class="custom-select" id="inputGroupSelect01" v-model="cityID">
-                    <option v-for="c in cities" :key="c.CityId" :value="c.CityId">
+                    <option v-for="c in cities" :key="c.cityId" :value="c.cityId">
                       {{
                       c.name
                       }}
@@ -84,9 +84,6 @@
 <script>
 import axios from "axios";
 
-//  "username": "toma@username.com",
-//   "department_id": "2",
-//   "city_id": "2"
 
 export default {
   created() {
@@ -114,7 +111,6 @@ export default {
         departmentId: this.departmentID,
         cityId: this.cityID
       };
-
       axios.put("/users/" + data.userId,  data).then(res => {
         this.$emit("updated");
         this.$emit("close");

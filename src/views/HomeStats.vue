@@ -6,28 +6,19 @@
           Confirm attendance
           <i class="fas fa-check" style="color:white"></i>
         </button>
-        <button
-          type="button"
-          class="btn btn-success btn--mod"
-          @click="downloadPdf"
-        >
+        <button type="button" class="btn btn-success btn--mod" @click="downloadPdf">
           Download Table as PDF
           <i class="fas fa-file-download"></i>
         </button>
       </div>
 
-      <v-client-table
-        class="table--mod"
-        :data="tableData"
-        :columns="columns"
-        :options="options"
-      ></v-client-table>
+      <v-client-table class="table--mod" :data="tableData" :columns="columns" :options="options"></v-client-table>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 import * as jsPDF from "jspdf";
 import "jspdf-autotable";
 import axios from "axios";
@@ -55,9 +46,10 @@ export default {
   },
   methods: {
     ...mapActions(["errorAppeared"]),
+    ...mapGetters(["getUser"]),
     checkIn() {
       let attendance = {
-        userId: this.$store.user.userId,
+        userId: this.getUser().userId,
         checkIn: new Date().toJSON()
       };
       axios.post("/attendances", attendance).then(e => {
@@ -88,17 +80,15 @@ export default {
       doc.save("Attendance.pdf");
     },
     updateTable() {
-      axios.get("/attendances").then(res => {
+      let user = this.getUser().userId;
+      axios.get("/attendances/user/" + user).then(res => {
         this.tableData = [];
         let dateData = res.data.forEach(e => {
-          console.log(e.checkIn);
-
           let d = moment(e.checkIn)
             .tz("Europe/Belgrade")
             .format("DD.MM.YYYY HH:mm");
 
           this.tableData.push({
-            
             date: d
           });
         });
@@ -114,25 +104,23 @@ export default {
   .table--mod {
     position: relative;
   }
-  .table{
-    color:#2c3e50;
-    
+  .table {
+    color: #2c3e50;
   }
-   .btn-sucess{
+  .btn-sucess {
     background-color: #56baed;
-  border: none;
-  color: white;
-  padding: 15px 60px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 13px;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
   }
   .btn--mod {
     margin: 5px;
   }
- 
   .buttons {
     position: absolute;
     left: 0;
@@ -141,7 +129,6 @@ export default {
     margin-top: -3px;
     font-size: 19px;
     display: inline-flex;
-    
   }
   .table-wrapper {
     margin: 0 1%;

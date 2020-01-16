@@ -23,11 +23,17 @@ export default new Vuex.Store({
     setUser(state, payload) {
       state.user = payload;
     },
+    setUser2(state, payload) {
+      state.user = payload;
+    },
     unsetUser(state) {
       state.user = null;
       state.isAdmin = null;
     },
     setAdminStatus(state, payload) {
+      state.isAdmin = payload;
+    },
+    setAdminStatus2(state, payload) {
       state.isAdmin = payload;
     }
   },
