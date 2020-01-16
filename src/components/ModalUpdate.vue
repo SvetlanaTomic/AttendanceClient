@@ -45,7 +45,7 @@
                   <label>
                     <h3>City</h3>
                   </label>
-                  <select class="custom-select" id="inputGroupSelect01" v-model="cityID">
+                  <select class="custom-select" id="inputGroupSelect01" v-model="user.cityId">
                     <option v-for="c in cities" :key="c.cityId" :value="c.cityId">
                       {{
                       c.name
@@ -57,7 +57,7 @@
                   <label>
                     <h3>Department</h3>
                   </label>
-                  <select class="custom-select" id="inputGroupSelect01" v-model="departmentID">
+                  <select class="custom-select" id="inputGroupSelect01" v-model="user.departmentId">
                     <option v-for="d in departments" :key="d.departmentId" :value="d.departmentId">
                       {{
                       d.name
@@ -108,8 +108,8 @@ export default {
         username: this.user.username,
         name: this.user.name,
         lastname: this.user.lastname,
-        departmentId: this.departmentID,
-        cityId: this.cityID
+        departmentId: this.user.departmentId,
+        cityId: this.user.cityId
       };
       axios.put("/users/" + data.userId,  data).then(res => {
         this.$emit("updated");
