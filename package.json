@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.0.10",
     "moment": "^2.24.0",
